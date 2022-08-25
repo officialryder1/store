@@ -1,5 +1,3 @@
-from logging import PlaceHolder
-from xml.sax.xmlreader import AttributesImpl
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
