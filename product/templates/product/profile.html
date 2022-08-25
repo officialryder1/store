@@ -1,0 +1,76 @@
+{% extends 'product/base.html' %}
+{% block content %}
+<style>
+    img{
+        border-radius: 100px;
+    }
+    #parent{
+        display: block;
+        border: 1px solid black;
+        margin: 0px auto;
+        background-color: black;
+        border-radius: 10px;
+    }
+    #block{
+        display: block;
+        border: 1px solid black;
+        width: 200px;
+        height: 50px;
+        border-radius: 5px;
+        text-align: center;
+        padding-top: 10px;
+    }
+    #block1{
+        display: block;
+        border: 1px solid black;
+        width: 200px;
+        height: 70px;
+        border-radius: 5px;
+        text-align: center;
+        padding-top: 10px;
+    }
+</style>
+
+<div class="container">
+    <div class="row row-col-2">
+        <div class="col">
+            {% load static%}
+            <img src="{% static 'image/logo.jpeg' %}" alt="" height="150">
+            <p class="lead">{{request.user}}</p>
+        </div>
+        <div class="col">
+            <div class="jumbotron jumbotron-fluid">
+                <h5 class="lead">Username: {{request.user}}</h5>
+                <h5 class="lead">Email: {{request.user.email}}</h5>
+                <h5 class="lead">Firstname: {{request.user.first_name}}</h5>
+                <h5 class="lead">Date_Joined: {{request.user.date_joined}}</h5>
+                |<a href="{% url 'user_update' %}" class="btn btn-danger">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+</div><br><br><br>
+<h1 class="lead" style="text-align: center;"><b>DASHBOARD</b></h1>
+<div id="parent">
+   <div class="container"><br>
+        <div>
+            <center>
+                <a href="{% url 'upload' %}" class="btn btn-warning but">Upload Product</a> | <a href="{% url 'delete_page' %}" class="btn btn-warning">Delete Product</a> | <a href="{% url 'edit_page' %}" class="btn btn-warning">Edit Product</a>
+            </center><br>
+            <center>
+                <div class="container">
+                    <div class="row row-col-2">
+                        <div class="col">
+                            <p class="btn btn-warning lead" id="block">You sold: 12 product</p>
+                        </div>
+                        
+                        <div class="col"> 
+                            <p class="btn btn-warning lead" id="block">You have: {{post_len}} products</p>
+                        </div>
+                    </div>
+                    <p class="btn btn-warning lead" id="block1">Total Amount made: $1500</p>
+                </div>
+            </center>
+        </div>
+   </div>
+</div>
+{% endblock %}

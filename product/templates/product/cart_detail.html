@@ -1,0 +1,50 @@
+{% extends 'product/base.html' %}
+{% load cart_tag %}
+{% block content%}
+<style>
+    .but{
+        display: block;
+        border: 1px black solid;
+        width: 40px;
+        text-align: center;
+        border-radius: 6px;
+    }
+</style>
+
+<div class="container">
+    {% if request.session.cart.items %}
+    {% for key,value in request.session.cart.items %}
+        <div card>
+            <div class="row row-col-2">
+                <div class="col">
+                    <img src="{{value.image}}" alt="" height="150" width="150">
+                </div>
+                <div class="col">
+                    <h4 class="lead">{{value.name}}</h4>
+                    <p class="lead">$ {{value.price}}</p>
+                    {% if value.quantity > 1%}
+                    <a href="{% url 'item_decrement' value.product_id %}" class="btn btn-warning">-</a>
+                    {% else %}
+                    <a href="" class="btn btn-warning">-</a>
+                    {% endif %}
+                    <span class="but">{{value.quantity}}</span>
+                    <a href="{% url 'item_increment' value.product_id %}" class="btn btn-warning">+</a>
+                    <a href="{% url 'item_clear' value.product_id %}" class="btn btn-danger">Remove</a>
+                    
+                </div>
+                <h3 class="lead">total: {{value.price|multiply:value.quantity}}</h3>
+            </div><br><hr>
+        </div>
+    {% endfor %}
+    {% else %}
+    <h1 class="lead" style="text-align: center;">No Item in your Cart at the moment.</h1>
+    <p style="text-align: center;" class="lead">Pick an item and add to cart</p>
+    {% endif %}
+</div>
+<center>
+    {% if request.session.cart.items %}
+    <a href="{% url 'checkout'%}" class="btn btn-warning">Check out</a>
+    <a href="{% url 'cart_clear' %}" class="btn btn-warning">Remove all</a>
+    {% endif %}
+</center><br>
+{% endblock %}

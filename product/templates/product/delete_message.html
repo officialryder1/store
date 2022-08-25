@@ -1,0 +1,20 @@
+{% extends 'product/base.html' %}
+{% block content %}
+<style>
+    a{
+        font-size: larger;
+        padding-top: 50px;
+        color: red;
+    }
+    h3{
+        font-family:sans-serif;
+        margin-top: 200px;
+    }
+</style>
+<center>
+    <img src="{{post.image.url}}" alt="" height="150" width="150">
+    <h3>Are you sure you want to delete post! - {{post.name}}</h3>
+    <a href="{% url 'delete' post.id %}">Yes</a> | <a href="{% url 'home' %}">No</a>
+
+</center>
+{% endblock %}

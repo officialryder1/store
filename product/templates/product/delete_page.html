@@ -1,0 +1,35 @@
+{% extends 'product/base.html' %}
+{% block content %}
+<style>
+    .but{
+        display: block;
+        border: 1px black solid;
+        width: 40px;
+        text-align: center;
+        border-radius: 6px;
+    }
+</style>
+{% if post.user == request.user %}
+        {% for post in post%}
+                <div class="container">
+                    <div card>
+                        <div class="row row-col-2">
+                            <div class="col">
+                                <img src="{{post.image.url}}" alt="" height="150" width="150">
+                            </div>
+                            <div class="col">
+                                <h4 class="lead">{{post.name}}</h4>
+                                <p class="lead">$ {{post.price}}</p>
+                                <a href="{% url 'delete_message' post.id %}" class="btn btn-danger">Delete</a>
+                                
+                            </div>
+                        </div><br><hr>
+                    </div>
+                </div>
+            
+        {% endfor %}
+{% else %}
+    <h1 class="lead" style="text-align: center;">Sorry! You haven't Uploaded Any Product</h1>
+{% endif %}
+    
+{% endblock%}
