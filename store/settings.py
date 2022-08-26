@@ -29,13 +29,13 @@ SECRET_KEY = 'l-4p-5f9@dn6g38_n9n5^ssg4g1rq803ibs%00h(av$l0bag*j'
 IS_HEROKU = "DYNO" in os.environ
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# if not IS_HEROKU:
-DEBUG = True
+if not IS_HEROKU:
+    DEBUG = True
 
-# if IS_HEROKU:
-#     ALLOWED_HOSTS = ["*"]
-# else:
-#     ALLOWED_HOSTS = []
+if IS_HEROKU:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'product',
     'member',
-    'cart'
+    'cart',
+    'storages'
 ]
 
 MIDDLEWARE = [
