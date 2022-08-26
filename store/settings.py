@@ -149,17 +149,23 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
 CART_SESSION_ID = 'cart'
+
+
+
+
+
+
 
 class HerokuDiscoverRunner(DiscoverRunner):
     """Test Runner for Heroku CI, which provides a database for you.
@@ -179,5 +185,13 @@ if "CI" in os.environ:
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = 'AKIA2NTYD4FPJU5IVPWI'
+
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_STORAGE_BUCKET_NAME = 'ryderstore-bucket'
 
 django_heroku.settings(locals())
